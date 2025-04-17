@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دعوتنامه عروسی مریم و محمدحسین</title>
+  <style>
+    @font-face {
+      font-family: "font";
+      src: url(./fonts/font.ttf) format('truetype');
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'font', sans-serif;
+    }
+
+    html, body {
+
+      height: 100%;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      
+    
+    }
+
+    .section {
+      height: 25vh;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .section video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .content-overlay {
+      position: fixed;
+      top: 44%;
+      left: 0%;
+      transform: translate(5%, -50%);
+      text-align: center;
+      color: rgb(44, 44, 44);
+      background: rgba(224, 224, 224, 0.4);
+      padding: 20px;
+      border-radius: 20px;
+      z-index: 10;
+    }
+
+    .fade-in {
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .names {
+      font-size: 4rem;
+      margin-top: 30px;
+    }
+
+    .family-name {
+      font-size: 2.6rem;
+      margin-top: 10px;
+    }
+
+    .date {
+      font-size: 2rem;
+      margin-top: 20px;
+    }
+
+    .countdown {
+      font-size: 1.8rem;
+      margin-top: 20px;
+    }
+
+    .location-btn {
+      margin-top: 30px;
+      padding: 15px 25px;
+      font-size: 2rem;
+      border: none;
+      border-radius: 10px;
+      background-color: #ff4081;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="section">
+    <video autoplay muted loop playsinline src="videos/video1.mp4"></video>
+  </div>
+  <div class="section">
+    <video autoplay muted loop playsinline src="videos/video2.mp4"></video>
+  </div>
+  <div class="section">
+    <video autoplay muted loop playsinline src="videos/video3.mp4"></video>
+  </div>
+  <div class="section">
+    <video autoplay muted loop playsinline src="videos/video4.mp4"></video>
+  </div>
+
+  <div class="content-overlay fade-in">
+    <h1>اگر اتفاق ها به دنبال هم رقم نمیخورد، <br>
+      و اگر خندیدن هایمان در هم گره نمیخورد ، <br>
+      این چنین جهانمان زیبا نمیشد
+    </h1>
+    <div class="names">مریم     محمدحسین</div>
+    <div class="family-name">ادهم      پورنوری </div>
+    <div class="date">تاریخ عروسی: ۲۳ اردیبهشت ۱۴۰۴</div>
+    <div class="countdown" id="countdown"></div>
+    <button class="location-btn" onclick="openLocation()">مشاهده مسیر روی نقشه</button>
+  </div>
+
+  <audio id="bg-music" autoplay loop>
+    <source src="music\bg-music.mp3" type="audio/mpeg">
+    مرورگر شما از پخش صوت پشتیبانی نمی‌کند.
+  </audio>
+  
+  <script>
+    const weddingDate = new Date("2025-05-13T00:00:00").getTime();
+    const countdownEl = document.getElementById("countdown");
+
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+
+      if (distance <= 0) {
+        clearInterval(interval);
+        countdownEl.style.display = "none";
+      } else {
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdownEl.innerHTML = `زمان باقی‌مانده: ${days} روز ${hours} ساعت ${minutes} دقیقه ${seconds} ثانیه`;
+      }
+    }, 1000);
+
+    function openLocation() {
+      const locationLink = "https://nshn.ir/55_bW6orIBOopf";
+      window.open(locationLink, '_blank');
+    }
+
+    const music = document.getElementById('bg-music');
+const musicBtn = document.querySelector('.music-btn');
+
+window.addEventListener('load', () => {
+  music.play().catch(() => {
+    console.log('پخش خودکار توسط مرورگر متوقف شد.');
+  });
+});
+
+function toggleMusic() {
+  if (music.paused) {
+    music.play();
+    musicBtn.innerText = '⏸ توقف موزیک';
+  } else {
+    music.pause();
+    musicBtn.innerText = '▶ پخش موزیک';
+  }
+}
+
+  </script>
+</body>
+</html>
