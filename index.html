@@ -106,7 +106,7 @@
 </head>
 <body>
   <div class="section">
-    <video autoplay loop playsinline src="videos/merged-video.mp4"></video>
+    <video autoplay loop playsinline src="videos/merged-video-30s.mp4"></video>
   </div>
   <div class="section">
     <video autoplay muted loop playsinline src="videos/video2.mp4"></video>
@@ -131,51 +131,32 @@
     <button class="location-btn" onclick="openLocation()">مشاهده مسیر روی نقشه</button>
   </div>
 
-  <audio id="bg-music" autoplay loop>
-    <source src="music/bg-music.mp3" type="audio/mpeg" />
-    مرورگر شما از پخش صوت پشتیبانی نمی‌کند.
-  </audio>
+<script>
+  const weddingDate = new Date("2025-05-13T00:00:00").getTime();
+  const countdownEl = document.getElementById("countdown");
 
-  <script>
-    const weddingDate = new Date("2025-05-13T00:00:00").getTime();
-    const countdownEl = document.getElementById("countdown");
+  const interval = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
 
-    const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = weddingDate - now;
+    if (distance <= 0) {
+      clearInterval(interval);
+      countdownEl.style.display = "none";
+    } else {
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      if (distance <= 0) {
-        clearInterval(interval);
-        countdownEl.style.display = "none";
-      } else {
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        countdownEl.innerHTML = `زمان باقی‌مانده: ${days} روز ${hours} ساعت ${minutes} دقیقه ${seconds} ثانیه`;
-      }
-    }, 1000);
-
-    function openLocation() {
-      const locationLink = "https://nshn.ir/55_bW6orIBOopf";
-      window.open(locationLink, "_blank");
+      countdownEl.innerHTML = `زمان باقی‌مانده: ${days} روز ${hours} ساعت ${minutes} دقیقه ${seconds} ثانیه`;
     }
+  }, 1000);
 
-    // تلاش برای پخش ویدیوها و موزیک روی iPhone و Safari
-    window.addEventListener("load", () => {
-      const videos = document.querySelectorAll("video");
-      videos.forEach((video) => {
-        video.play().catch((err) => {
-          console.log("ویدیو پخش نشد:", err);
-        });
-      });
+  function openLocation() {
+    const locationLink = "https://nshn.ir/55_bW6orIBOopf";
+    window.open(locationLink, "_blank");
+  }
+</script>
 
-      const music = document.getElementById("bg-music");
-      music.play().catch(() => {
-        console.log("پخش خودکار موزیک توسط مرورگر متوقف شد.");
-      });
-    });
-  </script>
 </body>
 </html>
