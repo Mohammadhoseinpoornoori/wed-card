@@ -29,9 +29,6 @@
       overflow: hidden;
       position: relative;
     }
-    .ff { 
-      font-size: 20px;
-     }
 
     .section video {
       width: 100%;
@@ -42,15 +39,18 @@
 
     .content-overlay {
       position: fixed;
-      top: 44%;
-      left: 0%;
-      transform: translate(5%, -50%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       text-align: center;
       color: rgb(44, 44, 44);
       background: rgba(224, 224, 224, 0.4);
-      padding: 20px;
+      padding: 2rem;
       border-radius: 20px;
       z-index: 10;
+      max-width: 90vw;
+      max-height: 90vh;
+      overflow-y: auto;
     }
 
     .fade-in {
@@ -63,34 +63,44 @@
     }
 
     .names {
-      font-size: 4rem;
-      margin-top: 30px;
+      font-size: 6vw;
+      margin-top: 2vh;
     }
 
     .family-name {
-      font-size: 2.6rem;
-      margin-top: 10px;
+      font-size: 4.5vw;
+      margin-top: 1vh;
     }
 
     .date {
-      font-size: 2rem;
-      margin-top: 20px;
+      font-size: 4vw;
+      margin-top: 2vh;
     }
 
     .countdown {
-      font-size: 1.8rem;
-      margin-top: 20px;
+      font-size: 3.5vw;
+      margin-top: 2vh;
     }
 
     .location-btn {
-      margin-top: 30px;
-      padding: 15px 25px;
-      font-size: 2rem;
+      margin-top: 3vh;
+      padding: 1rem 2rem;
+      font-size: 4vw;
       border: none;
       border-radius: 10px;
       background-color: #ff4081;
       color: white;
       cursor: pointer;
+    }
+
+    @media (max-width: 400px) {
+      .content-overlay {
+        padding: 1rem;
+      }
+
+      .names, .family-name, .date, .countdown, .location-btn {
+        font-size: 4vw;
+      }
     }
   </style>
 </head>
@@ -108,13 +118,14 @@
     <video autoplay muted loop playsinline src="videos/video4.mp4"></video>
   </div>
 
-  <div class="content-overlay fade-in ff" >
-    <h1>اگر اتفاق ها به دنبال هم رقم نمیخورد، <br>
-      و اگر خندیدن هایمان در هم گره نمیخورد ، <br>
+  <div class="content-overlay fade-in">
+    <h1>
+      اگر اتفاق ها به دنبال هم رقم نمیخورد، <br />
+      و اگر خندیدن هایمان در هم گره نمیخورد ، <br />
       این چنین جهانمان زیبا نمیشد
     </h1>
-    <div class="names">مریم  و   محمدحسین</div>
-    <div class="family-name">ادهم  و    پورنوری </div>
+    <div class="names">مریم     محمدحسین</div>
+    <div class="family-name">ادهم      پورنوری</div>
     <div class="date">تاریخ عروسی: ۲۳ اردیبهشت ۱۴۰۴</div>
     <div class="countdown" id="countdown"></div>
     <button class="location-btn" onclick="openLocation()">مشاهده مسیر روی نقشه</button>
