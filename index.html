@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>دعوتنامه عروسی مریم و محمدحسین</title>
   <style>
     @font-face {
       font-family: "font";
-      src: url(./fonts/font.ttf) format('truetype');
+      src: url(./fonts/font.ttf) format("truetype");
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'font', sans-serif;
+      font-family: "font", sans-serif;
     }
 
     html, body {
-
       height: 100%;
       overflow-x: hidden;
       scroll-behavior: smooth;
-      
-    
     }
 
     .section {
@@ -121,10 +118,10 @@
   </div>
 
   <audio id="bg-music" autoplay loop>
-    <source src="music\bg-music.mp3" type="audio/mpeg">
+    <source src="music/bg-music.mp3" type="audio/mpeg" />
     مرورگر شما از پخش صوت پشتیبانی نمی‌کند.
   </audio>
-  
+
   <script>
     const weddingDate = new Date("2025-05-13T00:00:00").getTime();
     const countdownEl = document.getElementById("countdown");
@@ -148,28 +145,23 @@
 
     function openLocation() {
       const locationLink = "https://nshn.ir/55_bW6orIBOopf";
-      window.open(locationLink, '_blank');
+      window.open(locationLink, "_blank");
     }
 
-    const music = document.getElementById('bg-music');
-const musicBtn = document.querySelector('.music-btn');
+    // تلاش برای پخش ویدیوها و موزیک روی iPhone و Safari
+    window.addEventListener("load", () => {
+      const videos = document.querySelectorAll("video");
+      videos.forEach((video) => {
+        video.play().catch((err) => {
+          console.log("ویدیو پخش نشد:", err);
+        });
+      });
 
-window.addEventListener('load', () => {
-  music.play().catch(() => {
-    console.log('پخش خودکار توسط مرورگر متوقف شد.');
-  });
-});
-
-function toggleMusic() {
-  if (music.paused) {
-    music.play();
-    musicBtn.innerText = '⏸ توقف موزیک';
-  } else {
-    music.pause();
-    musicBtn.innerText = '▶ پخش موزیک';
-  }
-}
-
+      const music = document.getElementById("bg-music");
+      music.play().catch(() => {
+        console.log("پخش خودکار موزیک توسط مرورگر متوقف شد.");
+      });
+    });
   </script>
 </body>
 </html>
