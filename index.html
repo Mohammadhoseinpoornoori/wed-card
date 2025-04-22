@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#ffffff" />
   <title>دعوتنامه عروسی مریم و محمدحسین</title>
   <style>
     @font-face {
@@ -62,6 +63,12 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    .poem {
+      font-size: clamp(1.2rem, 5vw, 2.2rem);
+      line-height: 2.5rem;
+      margin-bottom: 2vh;
+    }
+
     .names {
       font-size: clamp(3rem, 13vw, 8rem);
       margin-top: 2vh;
@@ -86,6 +93,12 @@
       background-color: #ff4081;
       color: white;
       cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .location-btn:hover {
+      background-color: #e91e63;
     }
 
     @media (max-width: 600px) {
@@ -110,7 +123,7 @@
   </div>
 
   <div class="content-overlay fade-in">
-    <h1>
+    <h1 class="poem">
       اگر اتفاق ها به دنبال هم رقم نمیخورد، <br />
       و اگر خندیدن هایمان در هم گره نمیخورد ، <br />
       این چنین جهانمان زیبا نمیشد
