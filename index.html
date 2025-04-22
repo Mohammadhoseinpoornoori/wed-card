@@ -40,7 +40,7 @@
     .content-overlay {
       position: fixed;
       top: 50%;
-      left: 10%;
+      left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
       color: rgb(44, 44, 44);
@@ -49,6 +49,7 @@
       border-radius: 20px;
       z-index: 10;
       max-width: 90vw;
+      width: 90vw;
       max-height: 90vh;
       overflow-y: auto;
     }
@@ -63,29 +64,24 @@
     }
 
     .names {
-      font-size: 21vw;
+      font-size: clamp(3rem, 10vw, 8rem);
       margin-top: 2vh;
     }
 
     .family-name {
-      font-size: 16.5vw;
+      font-size: clamp(2rem, 8vw, 6rem);
       margin-top: 1vh;
     }
 
-    .date {
-      font-size: 4vw;
-      margin-top: 2vh;
-    }
-
-    .countdown {
-      font-size: 3.5vw;
+    .date, .countdown {
+      font-size: clamp(1rem, 5vw, 3rem);
       margin-top: 2vh;
     }
 
     .location-btn {
       margin-top: 3vh;
       padding: 1rem 2rem;
-      font-size: 4vw;
+      font-size: clamp(1rem, 5vw, 2rem);
       border: none;
       border-radius: 10px;
       background-color: #ff4081;
@@ -93,20 +89,16 @@
       cursor: pointer;
     }
 
-    @media (max-width: 400px) {
+    @media (max-width: 600px) {
       .content-overlay {
         padding: 1rem;
-      }
-
-      .names, .family-name, .date, .countdown, .location-btn {
-        font-size: 10vw;
       }
     }
   </style>
 </head>
 <body>
   <div class="section">
-    <video autoplay loop playsinline src="videos/merged.mp4"></video>
+    <video autoplay loop playsinline muted src="videos/merged.mp4"></video>
   </div>
   <div class="section">
     <video autoplay muted loop playsinline src="videos/video2.mp4"></video>
@@ -124,8 +116,8 @@
       و اگر خندیدن هایمان در هم گره نمیخورد ، <br />
       این چنین جهانمان زیبا نمیشد
     </h1>
-    <div class="names">مریم     محمدحسین</div>
-    <div class="family-name">ادهم      پورنوری</div>
+    <div class="names">مریم محمدحسین</div>
+    <div class="family-name">ادهم پورنوری</div>
     <div class="date">تاریخ عروسی: ۲۳ اردیبهشت ۱۴۰۴</div>
     <div class="countdown" id="countdown"></div>
     <button class="location-btn" onclick="openLocation()">مشاهده مسیر روی نقشه</button>
@@ -157,6 +149,5 @@
     window.open(locationLink, "_blank");
   }
 </script>
-
 </body>
 </html>
