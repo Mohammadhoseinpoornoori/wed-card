@@ -64,40 +64,42 @@
     }
 
     .poem {
-      font-size: clamp(1.2rem, 5vw, 2.2rem);
-      line-height: 2.5rem;
+      font-size: clamp(1.2rem, 15vw, 2.2rem);
+      line-height: 3rem;
       margin-bottom: 2vh;
     }
 
     .names {
-      font-size: clamp(3rem, 13vw, 8rem);
-      margin-top: 2vh;
+      font-size: clamp(3rem, 20vw, 8rem);
+      margin-top: 3vh;
     }
 
     .family-name {
-      font-size: clamp(2rem, 11vw, 6rem);
-      margin-top: 1vh;
+      font-size: clamp(2rem, 13vw, 6rem);
+      margin-top: 3vh;
     }
 
     .date, .countdown {
-      font-size: clamp(1rem, 9vw, 3rem);
-      margin-top: 2vh;
+      font-size: clamp(2rem, 9vw, 4rem);
+      margin-top: 4vh;
       font-weight: bold;
       animation: colorPulse 2s infinite alternate;
     }
 
     @keyframes colorPulse {
-      0% { color: #2c2c2c; }
-      100% { color: #e91e63; }
+      0% { color: #868686; }
+      50% { color: #000000; }
+      100% { color: #f85a8f; }
+
     }
 
     .location-btn {
       margin-top: 3vh;
       padding: 1rem 2rem;
-      font-size: clamp(1rem, 5vw, 2rem);
+      font-size: clamp(1rem, 11vw, 2rem);
       border: none;
       border-radius: 10px;
-      background-color: #ff4081;
+      background-color: #f85a8f;
       color: white;
       cursor: pointer;
       transition: background-color 0.3s ease;
@@ -105,7 +107,7 @@
     }
 
     .location-btn:hover {
-      background-color: #e91e63;
+      background-color: #fc2f73;
     }
 
     @media (max-width: 600px) {
