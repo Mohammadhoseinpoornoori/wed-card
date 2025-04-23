@@ -56,42 +56,43 @@
       to { opacity: 1; transform: translateY(0); }
     }
     .poem {
-      font-size: clamp(1.2rem, 5vw, 2.2rem);
-      line-height: 2.5rem;
+      font-size: clamp(1.2rem, 15vw, 2.2rem);
+      line-height: 3rem;
       margin-bottom: 2vh;
     }
     .names {
-      font-size: clamp(3rem, 13vw, 8rem);
-      margin-top: 2vh;
+      font-size: clamp(3rem, 20vw, 8rem);
+      margin-top: 3vh;
     }
     .family-name {
-      font-size: clamp(2rem, 11vw, 6rem);
-      margin-top: 1vh;
+      font-size: clamp(2rem, 13vw, 6rem);
+      margin-top: 3vh;
     }
     .date, .countdown {
-      font-size: clamp(1rem, 9vw, 3rem);
-      margin-top: 2vh;
+      font-size: clamp(2rem, 9vw, 4rem);
+      margin-top: 4vh;
       font-weight: bold;
       animation: colorPulse 2s infinite alternate;
     }
     @keyframes colorPulse {
-      0% { color: #2c2c2c; }
-      100% { color: #e91e63; }
+      0% { color: #868686; }
+      50% { color: #000000; }
+      100% { color: #f85a8f; }
     }
     .location-btn {
       margin-top: 3vh;
       padding: 1rem 2rem;
-      font-size: clamp(1rem, 5vw, 2rem);
+      font-size: clamp(1rem, 11vw, 2rem);
       border: none;
       border-radius: 10px;
-      background-color: #ff4081;
+      background-color: #f85a8f;
       color: white;
       cursor: pointer;
       transition: background-color 0.3s ease;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     }
     .location-btn:hover {
-      background-color: #e91e63;
+      background-color: #fc2f73;
     }
     @media (max-width: 600px) {
       .content-overlay {
@@ -100,21 +101,8 @@
     }
     @media screen and (max-width: 375px) {
       .poem {
-        font-size: 1.1rem;
+        font-size: 4rem;
         line-height: 2.2rem;
-      }
-      .names {
-        font-size: 2.5rem;
-      }
-      .family-name {
-        font-size: 2rem;
-      }
-      .date, .countdown {
-        font-size: 1.2rem;
-      }
-      .location-btn {
-        font-size: 1rem;
-        padding: 0.75rem 1.5rem;
       }
     }
   </style>
@@ -129,16 +117,14 @@
   <div class="section">
     <video autoplay muted loop playsinline src="videos/video3.mp4"></video>
   </div>
-  
-
   <div class="content-overlay fade-in">
     <h1 class="poem">
       اگر اتفاق ها به دنبال هم رقم نمیخورد، <br />
       و اگر خندیدن هایمان در هم گره نمیخورد ، <br />
       این چنین جهانمان زیبا نمیشد
     </h1>
-    <div class="names">مریم محمدحسین</div>
-    <div class="family-name">ادهم پورنوری</div>
+    <div class="names">مریم و محمدحسین</div>
+    <div class="family-name">ادهم - پورنوری</div>
     <div class="date">تاریخ عروسی: ۲۳ اردیبهشت ۱۴۰۴</div>
     <div class="countdown" id="countdown"></div>
     <button class="location-btn" onclick="openLocation()">مشاهده مسیر روی نقشه</button>
@@ -146,45 +132,46 @@
 
   <audio id="weddingMusic" src="music/bg-music.mp3" autoplay loop></audio>
 
-<script>
-  const weddingDate = new Date("2025-05-13T00:00:00").getTime();
-  const countdownEl = document.getElementById("countdown");
+  <script>
+    const weddingDate = new Date("2025-05-13T00:00:00").getTime();
+    const countdownEl = document.getElementById("countdown");
 
-  const interval = setInterval(() => {
-    const now = new Date().getTime();
-    const distance = weddingDate - now;
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
 
-    if (distance <= 0) {
-      clearInterval(interval);
-      countdownEl.style.display = "none";
-    } else {
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      if (distance <= 0) {
+        clearInterval(interval);
+        countdownEl.style.display = "none";
+      } else {
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      countdownEl.innerHTML = `زمان باقی‌مانده: ${days} روز ${hours} ساعت ${minutes} دقیقه ${seconds} ثانیه`;
-    }
-  }, 1000);
-
-  function openLocation() {
-    const locationLink = "https://nshn.ir/55_bW6orIBOopf";
-    window.open(locationLink, "_blank");
-  }
-
-  window.addEventListener("DOMContentLoaded", () => {
-    const music = document.getElementById("weddingMusic");
-    const clickEvent = new Event("click", { bubbles: true, cancelable: true });
-
-    setTimeout(() => {
-      document.body.dispatchEvent(clickEvent);
-      music.play().catch(() => {
-        document.body.addEventListener("click", () => {
-          music.play();
-        }, { once: true });
-      });
+        countdownEl.innerHTML = `زمان باقی‌مانده: ${days} روز ${hours} ساعت ${minutes} دقیقه ${seconds} ثانیه`;
+      }
     }, 1000);
-  });
-</script>
+
+    function openLocation() {
+      const locationLink = "https://nshn.ir/55_bW6orIBOopf";
+      window.open(locationLink, "_blank");
+    }
+
+    // موزیک با کلیک شبیه‌سازی شده
+    window.addEventListener("DOMContentLoaded", () => {
+      const music = document.getElementById("weddingMusic");
+      const clickEvent = new Event("click", { bubbles: true, cancelable: true });
+
+      setTimeout(() => {
+        document.body.dispatchEvent(clickEvent);
+        music.play().catch(() => {
+          document.body.addEventListener("click", () => {
+            music.play();
+          }, { once: true });
+        });
+      }, 1000);
+    });
+  </script>
 </body>
 </html>
