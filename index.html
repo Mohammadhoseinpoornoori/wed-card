@@ -119,17 +119,17 @@
      /* سایز مخصوص آیفون 7: 375px عرض، 667px ارتفاع */
     @media screen and (max-width: 375px) {
        .poem {
-        font-size: 1.1rem;
+        font-size: 1.5rem;
         line-height: 2.2rem;
       }
       .names {
-        font-size: 2.5rem;
+        font-size: 3.5rem;
       }
       .family-name {
-        font-size: 2rem;
+        font-size: 2.5rem;
       }
       .date, .countdown {
-        font-size: 1.2rem;
+        font-size: 2rem;
       }
       .location-btn {
         font-size: 1rem;
@@ -148,9 +148,7 @@
   <div class="section">
     <video autoplay muted loop playsinline src="videos/video3.mp4"></video>
   </div>
-  <div class="section">
-    <video autoplay muted loop playsinline src="videos/video4.mp4"></video>
-  </div>
+  
 
   <div class="content-overlay fade-in">
     <h1 class="poem">
@@ -182,7 +180,7 @@
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      countdownEl.innerHTML = زمان باقی‌مانده: ${days} روز ${hours} ساعت ${minutes} دقیقه ${seconds} ثانیه;
+      countdownEl.innerHTML = `زمان باقی‌مانده: ${days} روز ${hours} ساعت ${minutes} دقیقه ${seconds} ثانیه`;
     }
   }, 1000);
 
