@@ -10,28 +10,33 @@
       font-family: "font";
       src: url(./fonts/font.ttf) format("truetype");
     }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: "font", sans-serif;
     }
+
     html, body {
       height: 100%;
       overflow-x: hidden;
     }
+
     .section {
       height: 35vh;
       width: 100%;
       overflow: hidden;
       position: relative;
     }
+
     .section video {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
+
     .content-overlay {
       position: fixed;
       top: 50%;
@@ -48,37 +53,46 @@
       max-height: 90vh;
       overflow-y: auto;
     }
+
     .fade-in {
       animation: fadeIn 2s ease-in-out;
     }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
     .poem {
       font-size: clamp(1.2rem, 15vw, 2.2rem);
       line-height: 3rem;
       margin-bottom: 2vh;
     }
+
     .names {
       font-size: clamp(3rem, 20vw, 8rem);
       margin-top: 3vh;
     }
+
     .family-name {
       font-size: clamp(2rem, 13vw, 6rem);
       margin-top: 3vh;
     }
+
     .date, .countdown {
       font-size: clamp(2rem, 9vw, 4rem);
       margin-top: 4vh;
       font-weight: bold;
       animation: colorPulse 2s infinite alternate;
     }
+
     @keyframes colorPulse {
       0% { color: #868686; }
       50% { color: #000000; }
       100% { color: #f85a8f; }
+
     }
+
     .location-btn {
       margin-top: 3vh;
       padding: 1rem 2rem;
@@ -91,16 +105,20 @@
       transition: background-color 0.3s ease;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     }
+
     .location-btn:hover {
       background-color: #fc2f73;
     }
+
     @media (max-width: 600px) {
       .content-overlay {
         padding: 1rem;
       }
     }
+
+     /* سایز مخصوص آیفون 7: 375px عرض، 667px ارتفاع */
     @media screen and (max-width: 375px) {
-      .poem {
+       .poem {
         font-size: 1.1rem;
         line-height: 2.2rem;
       }
@@ -130,6 +148,10 @@
   <div class="section">
     <video autoplay muted loop playsinline src="videos/video3.mp4"></video>
   </div>
+  <div class="section">
+    <video autoplay muted loop playsinline src="videos/video4.mp4"></video>
+  </div>
+
   <div class="content-overlay fade-in">
     <h1 class="poem">
       اگر اتفاق ها به دنبال هم رقم نمیخورد، <br />
@@ -143,48 +165,31 @@
     <button class="location-btn" onclick="openLocation()">مشاهده مسیر روی نقشه</button>
   </div>
 
-  <audio id="weddingMusic" src="music/bg-music.mp3" autoplay loop></audio>
+<script>
+  const weddingDate = new Date("2025-05-13T00:00:00").getTime();
+  const countdownEl = document.getElementById("countdown");
 
-  <script>
-    const weddingDate = new Date("2025-05-13T00:00:00").getTime();
-    const countdownEl = document.getElementById("countdown");
+  const interval = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
 
-    const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = weddingDate - now;
+    if (distance <= 0) {
+      clearInterval(interval);
+      countdownEl.style.display = "none";
+    } else {
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      if (distance <= 0) {
-        clearInterval(interval);
-        countdownEl.style.display = "none";
-      } else {
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        countdownEl.innerHTML = `زمان باقی‌مانده: ${days} روز ${hours} ساعت ${minutes} دقیقه ${seconds} ثانیه`;
-      }
-    }, 1000);
-
-    function openLocation() {
-      const locationLink = "https://nshn.ir/55_bW6orIBOopf";
-      window.open(locationLink, "_blank");
+      countdownEl.innerHTML = زمان باقی‌مانده: ${days} روز ${hours} ساعت ${minutes} دقیقه ${seconds} ثانیه;
     }
+  }, 1000);
 
-    // موزیک با کلیک شبیه‌سازی شده
-    window.addEventListener("DOMContentLoaded", () => {
-      const music = document.getElementById("weddingMusic");
-      const clickEvent = new Event("click", { bubbles: true, cancelable: true });
-
-      setTimeout(() => {
-        document.body.dispatchEvent(clickEvent);
-        music.play().catch(() => {
-          document.body.addEventListener("click", () => {
-            music.play();
-          }, { once: true });
-        });
-      }, 1000);
-    });
-  </script>
+  function openLocation() {
+    const locationLink = "https://nshn.ir/55_bW6orIBOopf";
+    window.open(locationLink, "_blank");
+  }
+</script>
 </body>
 </html>
