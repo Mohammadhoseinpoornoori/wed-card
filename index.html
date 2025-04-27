@@ -162,8 +162,25 @@
     <div class="countdown" id="countdown"></div>
     <button class="location-btn" onclick="openLocation()">مشاهده مسیر روی نقشه</button>
   </div>
+<audio id="weddingMusic" src="music/bg-music.mp3" autoplay loop preload="auto"></audio>
 
 <script>
+
+  window.addEventListener("DOMContentLoaded", () => {
+  const music = document.getElementById("weddingMusic");
+  const clickEvent = new Event("click", { bubbles: true, cancelable: true });
+
+  // برای مرورگرهایی که نیاز به تعامل کاربر دارند
+  setTimeout(() => {
+    document.body.dispatchEvent(clickEvent);
+    music.play().catch(() => {
+      document.body.addEventListener("click", () => {
+        music.play();
+      }, { once: true });
+    });
+  }, 1000);
+});
+
   const weddingDate = new Date("2025-05-13T00:00:00").getTime();
   const countdownEl = document.getElementById("countdown");
 
